@@ -12,6 +12,8 @@ def download_google_sheet():
 
 download_google_sheet()
 df = pd.read_excel("retsu.xlsx")
+for c in df.columns:
+    print(f"**{c}**")
 for i, row in df.iterrows():
     row = row.fillna("N/A")
     with st.expander(row['Title']):
