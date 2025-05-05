@@ -1,17 +1,16 @@
 import streamlit as st
-import gspread
+import gdown
 import pandas as pd
 
 st.title("RetsuStatus")
 
 @st.cache_resource
-def load_google_sheet():
-    CREDS = st.secrets['gsp_secrets']['my_project_settings']
-    gc = gspread.service_account_from_dict(CREDS)
-    return gc.open('Retsupurae Library').sheet1 # gmail account
+def download_google_sheet():
+    url = "https://docs.google.com/spreadsheets/d/11eOF_az4j1eJoARD6T791TAV8nV7DyBvJSJlW-mNr1w/edit?usp=sharing"
+    output = "retsu.csv"
+    gdown.download(url=url, output=output, fuzzy=True)
 
-rl = load_google_sheet()
-df = pd.DataFrame(rl.get_all_records())
+df = pd.read_csv("retsu.csv")
 for i, row in df.iterrows():
     for col in row.columns:
         st.write(col)
