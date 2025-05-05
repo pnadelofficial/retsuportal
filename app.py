@@ -10,6 +10,7 @@ def download_google_sheet():
     output = "retsu.csv"
     gdown.download(url=url, output=output, fuzzy=True)
 
+download_google_sheet()
 df = pd.read_csv("retsu.csv")
 for i, row in df.iterrows():
     for col in row.columns:
