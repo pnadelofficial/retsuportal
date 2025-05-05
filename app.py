@@ -13,5 +13,13 @@ def download_google_sheet():
 download_google_sheet()
 df = pd.read_excel("retsu.xlsx")
 for i, row in df.iterrows():
-    st.write(row)
+    row = row.fillna("N/A")
+    with st.expander(row['Title']):
+        st.write(f"Date of Upload: {row['Date of Upload']}")
+        st.write(f"RPers: {row['RPers']}")
+        st.write(f"LPer: {row['LPer']}")
+        st.write(f"Video Game: {row['Video Game']}")
+        st.write(f"Console: {row['Console']}")
+        st.write(f"Description: {row['Description']}")
+        st.video(row['URL'])
 
