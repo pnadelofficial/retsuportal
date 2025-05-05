@@ -18,7 +18,7 @@ for i, row in df.iterrows():
         st.write(f"Date of Upload: {row['Date of Upload']}")
         st.write(f"RPers: {row['RPers']}")
         st.write(f"LPer: {row['LPer']}")
-        st.write(f"Video Game: {row['Video Game']}")
+        # st.write(f"Video Game: {row['Video Game']}")
         st.write(f"Console: {row['Console']}")
         st.write(f"Description: {row['Description']}")
         st.video(row['URL'])
