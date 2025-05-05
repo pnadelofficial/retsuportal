@@ -13,7 +13,5 @@ def download_google_sheet():
 download_google_sheet()
 df = pd.read_excel("retsu.xlsx")
 for i, row in df.iterrows():
-    for col in row.columns:
-        st.write(col)
-        st.write(row[col])
+    st.write(row)
 
