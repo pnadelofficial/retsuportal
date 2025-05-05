@@ -2,7 +2,7 @@ import streamlit as st
 import gdown
 import pandas as pd
 
-st.title("RetsuStatus")
+st.title("Retsupurae Library")
 
 @st.cache_resource
 def download_google_sheet():
