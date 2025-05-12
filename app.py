@@ -5,6 +5,8 @@ import pandas as pd
 st.title("Retsupurae Library")
 # retsupurae by the numbers
 
+print(st.secrets.gsp_secrets)
+
 credentials = {
     "type":st.secrets.gsp_secrets.type,
     "project_id":st.secrets.gsp_secrets.project_id,
