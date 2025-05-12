@@ -36,7 +36,7 @@ for c in df.columns:
 for i, row in df.iterrows():
     row = row.fillna("N/A")
     with st.expander(row['Title']):
-        st.write(f"Date of Upload: {row['Date of Upload']}")
+        st.write(f"Date of Upload: {row['Date of Upload'].strftime("%B %-d, %Y")}")
         st.write(f"RPers: {row['RPers']}")
         st.write(f"LPer: {row['LPer']}")
         st.write(f"Video Game: {row['Video Game ']}")
