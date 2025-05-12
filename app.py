@@ -40,5 +40,6 @@ for i, row in df.iterrows():
         st.write(f"Video Game: {row['Video Game ']}")
         st.write(f"Console: {row['Console']}")
         st.write(f"Description: {row['Video Description']}")
-        st.video(row['URL'])
+        if row['URL'] == "N/A":
+            st.video(row['URL'])
 
