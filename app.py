@@ -1,17 +1,34 @@
 import streamlit as st
-import gdown
+import gspread
 import pandas as pd
 
 st.title("Retsupurae Library")
+# retsupurae by the numbers
+
+credentials = {
+    "type":st.secrets.gsp_secrets.type,
+    "project_id":st.secrets.gsp_secrets.project_id,
+    "private_key_id":st.secrets.gsp_secrets.private_key_id,
+    "private_key":st.secrets.gsp_secrets.private_key,
+    "client_email":st.secrets.gsp_secrets.client_email,
+    "client_id":st.secrets.gsp_secrets.client_id,
+    "auth_uri":st.secrets.gsp_secrets.auth_uri,
+    "token_uri":st.secrets.gsp_secrets.token_uri,
+    "auth_provider_x509_cert_url":st.secrets.gsp_secrets.auth_provider_x509_cert_url,
+    "client_x509_cert_url":st.secrets.gsp_secrets.client_x509_cert_url,
+    "universe_domain":st.secrets.gsp_secrets.universe_domain
+}
 
 @st.cache_resource
-def download_google_sheet():
-    url = "https://docs.google.com/spreadsheets/d/11eOF_az4j1eJoARD6T791TAV8nV7DyBvJSJlW-mNr1w/edit?usp=sharing"
-    output = "retsu.xlsx"
-    gdown.download(url=url, output=output, fuzzy=True)
+def access_google_sheet():
+    gc = gspread.service_account_from_dict(credentials)
+    sh = gc.open("Retsupurae Library").sheet1
+    data = sh.get_all_values()
+    headers = data.pop(0)
+    df = pd.DataFrame(data, columns=headers)
+    return df
 
-download_google_sheet()
-df = pd.read_excel("retsu.xlsx")
+df = access_google_sheet()
 for c in df.columns:
     print(f"**{c}**")
 for i, row in df.iterrows():
