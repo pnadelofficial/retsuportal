@@ -31,8 +31,7 @@ def access_google_sheet():
     return df
 
 df = access_google_sheet()
-for c in df.columns:
-    print(f"**{c}**")
+df['Date of Upload'] = pd.to_datetime(df['Date of Upload'])
 for i, row in df.iterrows():
     row = row.fillna("N/A")
     with st.expander(row['Title']):
